@@ -20,8 +20,10 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-
-
-
 Bundler::GemHelper.install_tasks
 
+task default: :spec
+
+task :spec do
+  sh 'cd spec/dummy && bundle exec rake spec'
+end
