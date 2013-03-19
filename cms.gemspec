@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://www.github.com/DynamoMTL/cms"
   s.summary     = "simple content management"
   s.description = "a mercury based cms, backed by active_admin"
+  s.required_ruby_version = ">= 1.9.3"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
