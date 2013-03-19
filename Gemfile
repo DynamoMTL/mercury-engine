@@ -14,4 +14,12 @@ gem "jquery-rails"
 # your gem to rubygems.org.
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
+gem 'guard-rspec'
+gem 'rb-inotify', require: false
+gem 'rb-fsevent', require: false
+gem "rspec-rails"
+gem "capybara"
+gem "fuubar"
+gem 'shoulda-matchers'
+gem 'pry-rails'
