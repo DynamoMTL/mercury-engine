@@ -7,11 +7,11 @@ require "cms/version"
 Gem::Specification.new do |s|
   s.name        = "cms"
   s.version     = Cms::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Cms."
-  s.description = "TODO: Description of Cms."
+  s.author      = "Josh Nussbaum"
+  s.email       = "joshnuss@gmail.com"
+  s.homepage    = "http://www.github.com/DynamoMTL/cms"
+  s.summary     = "simple content management"
+  s.description = "a mercury based cms, backed by active_admin"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
