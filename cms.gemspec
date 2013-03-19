@@ -18,6 +18,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 3.2.13"
   s.add_dependency "activeadmin"
+  s.add_dependency "haml-rails"
+  s.add_dependency "sass-rails"
+  s.add_dependency "coffee-rails"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails"
