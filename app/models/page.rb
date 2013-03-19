@@ -8,7 +8,7 @@ class Page < ActiveRecord::Base
   validates :title, uniqueness: {scope: :parent_id}
 
   def self.find_by_path(path)
-    parts = path.split('/').reject(&:empty?)
+    parts = path.split('/').reject(&:blank?)
     page  = root
 
     while page && part = parts.shift
