@@ -13,16 +13,18 @@ describe Page do
     let(:services) { create_page(title: 'Services', parent: company) }
 
     context 'path' do
-      specify { root.path.should == '/'}
-      specify { about.path.should == '/about' }
-      specify { company.path.should == '/about/company' }
-      specify { services.path.should == '/about/company/services' }
+      specify { root.path.should be_a(Pathname)}
+      specify { root.path.to_s.should == '/'}
+      specify { about.path.to_s.should == '/about' }
+      specify { company.path.to_s.should == '/about/company' }
+      specify { services.path.to_s.should == '/about/company/services' }
     end
 
     context '#find_by_path' do
       context "found" do
         specify("root")                  { Page.find_by_path("").should == root }
         specify("root with slash")       { Page.find_by_path("/").should == root }
+        specify("root with nil")         { Page.find_by_path(nil).should == root }
         specify("child")                 { Page.find_by_path("about").should == about }
         specify("child with slash")      { Page.find_by_path("/about").should == about }
         specify("grandchild")            { Page.find_by_path("about/company").should == company }
