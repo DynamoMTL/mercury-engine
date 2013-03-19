@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
   s.add_dependency "rails", "~> 3.2.13"
+  s.add_dependency "mercury-rails"
   s.add_dependency "activeadmin"
   s.add_dependency "acts_as_tree"
   s.add_dependency "has_permalink"
