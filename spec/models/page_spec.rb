@@ -19,7 +19,7 @@ describe Page do
       specify { services.path.should == '/about/company/services' }
     end
 
-    context 'find by path' do
+    context '#find_by_path' do
       context "found" do
         specify("root")                  { Page.find_by_path("").should == root }
         specify("root with slash")       { Page.find_by_path("/").should == root }
@@ -31,6 +31,19 @@ describe Page do
 
       context "not found" do
         specify { Page.find_by_path('page-not-found').should be_nil }
+      end
+    end
+
+    context "find_by_path!" do
+      context "not found" do
+        it("raises error") do
+          expect {
+            Page.find_by_path!('aint/nobody/got/time/4/that.aspx')
+          }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
+      context "found" do
+        it("returns page") { Page.find_by_path!('about').should == about }
       end
     end
   end
