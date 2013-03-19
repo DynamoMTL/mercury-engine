@@ -22,4 +22,12 @@ class Page < ActiveRecord::Base
   def self.find_by_path!(path)
     find_by_path(path) or raise ActiveRecord::RecordNotFound
   end
+
+  def path
+    if parent
+      (Pathname.new(parent.path) + permalink).to_s
+    else
+      "/"
+    end
+  end
 end
