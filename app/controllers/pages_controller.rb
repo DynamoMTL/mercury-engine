@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   include PagesHelper
   protect_from_forgery
-  before_filter :authenticate_user!, except: :show
+  before_filter :authenticate_admin_user!, except: :show
   before_filter :find_page
 
   def show
