@@ -519,3 +519,11 @@ window.Mercury =
   #
   # Turning debug mode on will log events and other various things (using console.debug if available).
   debug: false
+
+$(window).bind 'mercury:saved', ->
+  window.location = window.location.href.replace(/\/editor\//i, '/')
+
+$(window).bind 'mercury:ready', ->
+  element = $('#mercury_iframe').contents().find('#edit-page')
+  Mercury.saveURL = element.data('save-url')
+  element.hide()
