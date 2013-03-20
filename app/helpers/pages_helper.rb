@@ -6,13 +6,14 @@ module PagesHelper
     end
   end
 
-  def editable(tag, id, default=nil, style=:full, &block)
+  def editable(tag, id, default=nil, options={}, &block)
     value   = content(id, default)
-    escaped = style == :full ? raw(value) : value
-    options = {id: id, data: {mercury: style}}
+    type   = options[:type] || :full
+    escaped = type == :full ? raw(value) : value
+    options = {id: id, data: {mercury: type}}
     block   = nil unless escaped.blank?
 
-    content_tag(tag, escaped, options, &block)
+    content_tag(tag, escaped, options.except(:type), &block)
   end
 
   def editable_image(id, default=nil)
@@ -23,7 +24,7 @@ module PagesHelper
   end
 
   def title
-    editable(:h1, :title, @page.content[:title], :simple)
+    editable(:h1, :title, @page.content[:title], type: :simple)
   end
 
   def content(id, default=nil)
