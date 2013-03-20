@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = "a mercury based mercury_engine, backed by active_admin"
   s.required_ruby_version = ">= 1.9.3"
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "rails", "~> 3.2.13"
   s.add_dependency "mercury-rails"
