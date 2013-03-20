@@ -1,4 +1,4 @@
-# This migration comes from cms (originally 20130318080000)
+# This migration comes from mercury_engine (originally 20130318080000)
 class CreateVersions < ActiveRecord::Migration
   def change
     create_table :versions do |t|

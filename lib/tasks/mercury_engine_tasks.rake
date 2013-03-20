@@ -1,4 +1,4 @@
 # desc "Explaining what the task does"
-# task :cms do
+# task :mercury_engine do
 #   # Task goes here
 # end

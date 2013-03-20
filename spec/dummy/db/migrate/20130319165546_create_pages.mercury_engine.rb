@@ -1,4 +1,4 @@
-# This migration comes from cms (originally 20130318125100)
+# This migration comes from mercury_engine (originally 20130318125100)
 class CreatePages < ActiveRecord::Migration
   def change
     create_table :pages do |t|

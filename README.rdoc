@@ -1,3 +1,7 @@
+# Mercury Engine
+
+> The Little Engine That Could
+
 Installation
 ------------
 Add `mercury_engine` to your Gemfile:

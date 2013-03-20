@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cms (0.0.1)
+    mercury_engine (0.0.1)
       activeadmin
       acts_as_tree
       coffee-rails
@@ -252,11 +252,11 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
-  cms!
   debugger
   fuubar
   guard-rspec
   jquery-rails
+  mercury_engine!
   pry-rails
   rb-fsevent
   rb-inotify
