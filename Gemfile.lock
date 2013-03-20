@@ -8,6 +8,7 @@ PATH
       haml-rails
       has_permalink
       mercury-rails
+      paper_trail
       rails (~> 3.2.13)
       sass-rails
 
@@ -79,7 +80,7 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.6.1)
+    coffee-script-source (1.6.2)
     columnize (0.3.6)
     debugger (1.5.0)
       columnize (>= 0.3.1)
@@ -154,6 +155,9 @@ GEM
     multi_json (1.7.1)
     nokogiri (1.5.6)
     orm_adapter (0.4.0)
+    paper_trail (2.7.1)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)

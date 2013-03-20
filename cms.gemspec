@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "mercury-rails"
   s.add_dependency "activeadmin"
   s.add_dependency "acts_as_tree"
+  s.add_dependency "paper_trail"
   s.add_dependency "has_permalink"
   s.add_dependency "haml-rails"
   s.add_dependency "sass-rails"
