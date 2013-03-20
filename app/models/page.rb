@@ -1,7 +1,7 @@
 class Page < ActiveRecord::Base
   acts_as_tree
   has_paper_trail
-  attr_accessible :title, :content, :parent_id, :parent
+  attr_accessible :title, :content, :parent_id, :parent, :permalink
   serialize       :content, Hash
   has_permalink   :title, scope: :parent_id
 
