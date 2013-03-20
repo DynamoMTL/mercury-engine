@@ -1,6 +1,8 @@
 require 'mercury-rails'
+require 'mercury/authentication'
 require 'active_admin'
 require 'acts_as_tree'
+require 'paper_trail'
 require 'has_permalink'
 require 'haml'
 require 'cms/engine'
