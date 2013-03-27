@@ -30,6 +30,12 @@ Then, run the `mercury_engine:install` generator. It will copy over database mig
 rails generate mercury_engine:install
 ```
 
+Also, add the "Edit" link somewhere in your layout, a default partial is provided.
+
+```haml
+= render partial: 'mercury_engine/shared/edit_link'
+```
+
 Testing
 -------
 
