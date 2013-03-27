@@ -12,7 +12,7 @@ class Page < ActiveRecord::Base
     def find_by_path(path)
       return unless page = root
 
-      walk_children(page, path) do |last_page, part|
+      page.walk(path) do |last_page, part|
         last_page.children.find_by_permalink(part) if last_page
       end
     end
@@ -24,16 +24,8 @@ class Page < ActiveRecord::Base
     def find_or_create_by_path(path)
       page = root || Page.create(permalink: '')
 
-      walk_children(page, path) do |last_page, part|
+      page.walk(path) do |last_page, part|
         last_page.children.find_or_create_by_permalink(part)
-      end
-    end
-
-    def walk_children(page, path, &block)
-      parts = path.to_s.split('/').reject(&:blank?)
-
-      parts.reduce(page) do |last_page, part|
-        block.call(last_page, part)
       end
     end
   end
@@ -56,5 +48,13 @@ class Page < ActiveRecord::Base
     else
       path
     end.to_s
+  end
+
+  def walk(path, &block)
+    parts = path.to_s.split('/').reject(&:blank?)
+
+    parts.reduce(self) do |last_page, part|
+      block.call(last_page, part)
+    end
   end
 end
