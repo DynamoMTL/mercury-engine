@@ -15,7 +15,7 @@ module MercuryEngine
          if response == "" || response.downcase == "y"
            run 'bundle exec rake db:migrate'
          else
-           puts "Skipping rake db:migrate, don't forget to run it!"
+           say "Skipping rake db:migrate, don't forget to run it!", :yellow
          end
       end
     end
