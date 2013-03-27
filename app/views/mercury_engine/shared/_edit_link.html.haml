@@ -1,2 +1,3 @@
-%nav#edit-page{ data: { 'save-url' => page_path(@page) }}
-  = link_to t(:edit), "/editor" + request.path
+- if @page && admin_user_signed_in?
+  %nav#edit-page{ data: { 'save-url' => page_path(@page) }}
+    = link_to t(:edit), "/editor" + request.path
