@@ -12,8 +12,8 @@ class Page < ActiveRecord::Base
     def find_by_path(path)
       return unless page = root
 
-      page.walk(path) do |last_page, part|
-        last_page.children.find_by_permalink(part) if last_page
+      page.walk(path) do |last, part|
+        last.children.find_by_permalink(part) if last
       end
     end
 
@@ -24,8 +24,8 @@ class Page < ActiveRecord::Base
     def find_or_create_by_path(path)
       page = root || Page.create(permalink: '')
 
-      page.walk(path) do |last_page, part|
-        last_page.children.find_or_create_by_permalink(part)
+      page.walk(path) do |last, part|
+        last.children.find_or_create_by_permalink(part)
       end
     end
   end
@@ -51,10 +51,8 @@ class Page < ActiveRecord::Base
   end
 
   def walk(path, &block)
-    parts = path.to_s.split('/').reject(&:blank?)
+    parts = Pathname.new(path.to_s).each_filename
 
-    parts.reduce(self) do |last_page, part|
-      block.call(last_page, part)
-    end
+    parts.reduce(self, &block)
   end
 end
