@@ -39,10 +39,14 @@ Also, add the "Edit" link somewhere in your layout. The engine provides a partia
 Testing
 -------
 
+Clone the repo:
+
+    $ hub clone DynamoMTL/mercury-engine && cd mercury-engine
+
 To run tests:
 
     $ bundle exec rake spec
 
 To run tests with guard (preferred):
-    
+
     $ bundle exec guard
