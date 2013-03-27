@@ -39,10 +39,10 @@ describe PagesController do
       request.env['warden'] = mock(Warden, :authenticate => mock_user, 
                                    :authenticate! => mock_user)
 
-      Page.should_receive(:find_by_path!).and_return(page)
+      Page.should_receive(:find_or_create_by_path).with('about').and_return(page)
       page.should_receive(:update_attributes).with(content: {'title' => 'About Us', 'summary' => 'lorem ipsum'})
 
-      post :update, content: {title:   {value: "About Us"},
+      post :update, path: 'about', content: {title:   {value: "About Us"},
                               summary: {value: "lorem ipsum"}}
     end
 
