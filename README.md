@@ -22,10 +22,10 @@ Then, run bundler
 bundle
 ```
 
-And dont forget to install migrations
+Run the `mercury_engine:install` generator. It will copy over database migrations and will mount the engine in your `config/routes.rb`
 
 ```
-rake mercury_engine:install:migrations
+rails generate mercury_engine:install
 ```
 
 Testing
