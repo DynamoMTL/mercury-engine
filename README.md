@@ -2,6 +2,8 @@
 
 > The Little Engine That Could
 
+This is a basic content editing system based on [Mercury Editor](http://jejacks0n.github.com/mercury/) and [Active Admin](http://activeadmin.info/).
+
 Installation
 ------------
 Add `mercury_engine` to your Gemfile:
