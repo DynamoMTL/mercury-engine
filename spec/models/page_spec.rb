@@ -36,7 +36,7 @@ describe Page do
       end
     end
 
-    context "find_by_path!" do
+    context "#find_by_path!" do
       context "not found" do
         it("raises error") do
           expect {
@@ -48,6 +48,25 @@ describe Page do
         it("returns page") { Page.find_by_path!('about').should == about }
       end
     end
+  end
+
+  context "#find_or_create_by_path" do
+    context "root found" do
+      let!(:root)    { create_page(title: 'Home') }
+
+      specify('url empty')    { Page.find_or_create_by_path("").should == root }
+      specify('url is slash') { Page.find_or_create_by_path("/").should == root }
+    end
+
+    context "root no found" do
+      specify('url empty')    { Page.find_or_create_by_path("").path.to_s.should == "/" }
+      specify('url is slash') { Page.find_or_create_by_path("/").path.to_s.should == "/" }
+    end
+
+    context "child page found"
+    context "child page not found"
+    context "grandchild page found"
+    context "grandchild page not found"
   end
 
   def create_page(attrs = {})
