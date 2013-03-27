@@ -30,7 +30,7 @@ Then, run the `mercury_engine:install` generator. It will copy over database mig
 rails generate mercury_engine:install
 ```
 
-Also, add the "Edit" link somewhere in your layout, a default partial is provided.
+Also, add the "Edit" link somewhere in your layout. The engine provides a partial that will only show the link when an admin is logged in.
 
 ```haml
 = render partial: 'mercury_engine/shared/edit_link'
