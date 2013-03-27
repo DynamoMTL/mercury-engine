@@ -52,19 +52,39 @@ describe Page do
 
   context "#find_or_create_by_path" do
     context "root found" do
-      let!(:root)    { create_page(title: 'Home') }
+      let!(:root) { create_page(title: 'Home') }
 
       specify('url empty')    { Page.find_or_create_by_path("").should == root }
       specify('url is slash') { Page.find_or_create_by_path("/").should == root }
+      specify('url is nil')   { Page.find_or_create_by_path(nil).should == root }
     end
 
     context "root no found" do
       specify('url empty')    { Page.find_or_create_by_path("").path.to_s.should == "/" }
       specify('url is slash') { Page.find_or_create_by_path("/").path.to_s.should == "/" }
+      specify('url is nil')   { Page.find_or_create_by_path(nil).path.to_s.should == "/" }
     end
 
-    context "child page found"
-    context "child page not found"
+    context "child page found" do
+      let!(:root)  { create_page(title: 'Home') }
+      let!(:about) { create_page(title: 'About', parent: root) }
+
+      specify("child")            { Page.find_or_create_by_path("about").should == about }
+      specify("child with slash") { Page.find_or_create_by_path("/about").should == about }
+    end
+
+    context "child page not found" do
+      context "root found" do
+        specify("child")            { Page.find_or_create_by_path("about").path.to_s.should == '/about' }
+        specify("child with slash") { Page.find_or_create_by_path("/about").path.to_s.should == '/about' }
+      end
+
+      context "root not found" do
+        specify("child")            { Page.find_or_create_by_path("about").path.to_s.should == '/about' }
+        specify("child with slash") { Page.find_or_create_by_path("/about").path.to_s.should == '/about' }
+      end
+    end
+
     context "grandchild page found"
     context "grandchild page not found"
   end

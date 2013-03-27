@@ -24,7 +24,13 @@ class Page < ActiveRecord::Base
     end
 
     def find_or_create_by_path(path)
-      find_by_path(path) || Page.create(permalink: '')
+      page = root || Page.create(permalink: '')
+
+      parts = path.to_s.split('/').reject(&:blank?)
+
+      parts.reduce(page) do |last_page, part|
+        last_page.children.find_or_create_by_permalink(part)
+      end
     end
   end
 
