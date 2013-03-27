@@ -69,24 +69,39 @@ describe Page do
       let!(:root)  { create_page(title: 'Home') }
       let!(:about) { create_page(title: 'About', parent: root) }
 
-      specify("child")            { Page.find_or_create_by_path("about").should == about }
-      specify("child with slash") { Page.find_or_create_by_path("/about").should == about }
+      specify               { Page.find_or_create_by_path("about").should == about }
+      specify("with slash") { Page.find_or_create_by_path("/about").should == about }
     end
 
     context "child page not found" do
       context "root found" do
-        specify("child")            { Page.find_or_create_by_path("about").path.to_s.should == '/about' }
-        specify("child with slash") { Page.find_or_create_by_path("/about").path.to_s.should == '/about' }
+        let!(:root) { create_page(title: 'Home') }
+
+        specify               { Page.find_or_create_by_path("about").parent.should == root }
+        specify               { Page.find_or_create_by_path("about").path.to_s.should == '/about' }
+        specify("with slash") { Page.find_or_create_by_path("/about").path.to_s.should == '/about' }
       end
 
       context "root not found" do
-        specify("child")            { Page.find_or_create_by_path("about").path.to_s.should == '/about' }
-        specify("child with slash") { Page.find_or_create_by_path("/about").path.to_s.should == '/about' }
+        specify               { Page.find_or_create_by_path("about").path.to_s.should == '/about' }
+        specify("with slash") { Page.find_or_create_by_path("/about").path.to_s.should == '/about' }
       end
     end
 
-    context "grandchild page found"
-    context "grandchild page not found"
+    context "grandchild page found" do
+      let!(:root)    { create_page(title: 'Home') }
+      let!(:about)   { create_page(title: 'About', parent: root) }
+      let!(:company) { create_page(title: 'Company', parent: about) }
+
+      specify               { Page.find_or_create_by_path("about/company").parent.should == about }
+      specify               { Page.find_or_create_by_path("about/company").should == company }
+      specify("with slash") { Page.find_or_create_by_path("/about/company").should == company }
+    end
+
+    context "grandchild page not found" do
+      specify               { Page.find_or_create_by_path("about/company").path.to_s.should == '/about/company' }
+      specify("with slash") { Page.find_or_create_by_path("/about/company").path.to_s.should == '/about/company' }
+    end
   end
 
   def create_page(attrs = {})
