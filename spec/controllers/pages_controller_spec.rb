@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe PagesController do
+  include Devise::TestHelpers
+
+  def mock_user(stubs={})
+    @mock_user ||= mock_model(AdminUser, stubs).as_null_object
+  end
 
   context "show" do
     let(:page) { stub(:page, template_path: 'test') }
@@ -30,8 +35,12 @@ describe PagesController do
     let(:page) { mock(:page) }
 
     before do
+      # mock up an authentication in the underlying warden library
+      request.env['warden'] = mock(Warden, :authenticate => mock_user, 
+                                   :authenticate! => mock_user)
+
       Page.should_receive(:find_by_path!).and_return(page)
-      page.should_receive(:update_attributes).with(content: {title: 'About Us', summary: 'lorem ipsum'})
+      page.should_receive(:update_attributes).with(content: {'title' => 'About Us', 'summary' => 'lorem ipsum'})
 
       post :update, content: {title:   {value: "About Us"},
                               summary: {value: "lorem ipsum"}}
