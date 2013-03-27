@@ -9,18 +9,18 @@ Installation
 Add `mercury_engine` to your Gemfile:
 
 ```ruby
-gem "mercury_engine"
+gem 'mercury_engine'
 ```
 
 Alternatively you can use the git repo directly:
 
 ```ruby
-gem "mercury_engine", git: "git://github.com/DynamoMTL/mercury-engine.git"
+gem 'mercury_engine', github: 'DynamoMTL/mercury-engine'
 ```
 
 Now update your bundle
 
-```
+```bash
 bundle
 ```
 
