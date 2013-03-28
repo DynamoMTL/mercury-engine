@@ -4,9 +4,10 @@ class PagesController < ApplicationController
   before_filter :authenticate_admin_user!, except: :show
 
   def show
-    @page = Page.find_by_path!(params[:path])
+    path  = params[:path]
+    @page = Page.find_by_path(path)
 
-    render action: @page.template_path
+    render action: template_path(path)
   end
 
   def update
