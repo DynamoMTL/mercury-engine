@@ -524,6 +524,10 @@ $(window).bind 'mercury:saved', ->
   window.location = window.location.href.replace(/\/editor\//i, '/')
 
 $(window).bind 'mercury:ready', ->
-  element = $('#mercury_iframe').contents().find('#edit-page')
+  iframe  = $('#mercury_iframe').contents()
+  body    = iframe.find('body')
+  element = iframe.find('#edit-page')
+
   Mercury.saveURL = element.data('save-url')
   element.hide()
+  body.addClass('editing')
