@@ -43,7 +43,7 @@ module PagesHelper
   end
 
   def content_for(id)
-    @page.content[id.to_s]
+    @page.content[id.to_s] if @page
   end
 
   def find_type_for_tag(tag)
