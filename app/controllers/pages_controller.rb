@@ -11,8 +11,7 @@ class PagesController < ApplicationController
   end
 
   def update
-    @page = Page.find_or_create_by_path(params[:path])
-    @page.update_attributes content: format_content(params[:content])
+    Page.update_content(params[:path], format_content(params[:content]))
 
     render text: ''
   end

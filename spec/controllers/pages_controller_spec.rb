@@ -33,15 +33,12 @@ describe PagesController do
   end
 
   context "update" do
-    let(:page) { mock(:page) }
-
     before do
       # mock up an authentication in the underlying warden library
       request.env['warden'] = mock(Warden, :authenticate => mock_user, 
                                    :authenticate! => mock_user)
 
-      Page.should_receive(:find_or_create_by_path).with('about').and_return(page)
-      page.should_receive(:update_attributes).with(content: {'title' => 'About Us', 'summary' => 'lorem ipsum'})
+      Page.should_receive(:update_content).with('about', {'title' => 'About Us', 'summary' => 'lorem ipsum'})
 
       post :update, path: 'about', content: {title:   {value: "About Us"},
                               summary: {value: "lorem ipsum"}}

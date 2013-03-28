@@ -14,12 +14,16 @@ class Page < ActiveRecord::Base
       end
     end
 
-    def find_or_create_by_path(path)
+    def update_content(path, content = {})
       page = root || Page.create(permalink: '')
 
-      page.walk(path) do |last, part|
+      page = page.walk(path) do |last, part|
         last.children.find_or_create_by_permalink(part)
       end
+
+      page.update_attributes(content: content)
+
+      page
     end
   end
 
