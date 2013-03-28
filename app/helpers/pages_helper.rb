@@ -8,7 +8,7 @@ module PagesHelper
     end
   end
 
-  def editable(tag, id, options={}, &block)
+  def editable(id, tag=:div, options={}, &block)
     content        = content_for(id)
     type           = options[:type] || find_type_for_tag(tag)
     options[:id]   = id
