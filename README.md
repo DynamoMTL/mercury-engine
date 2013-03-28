@@ -4,6 +4,30 @@
 
 A basic content editing system based on [Mercury Editor](http://jejacks0n.github.com/mercury/) and [Active Admin](http://activeadmin.info/).
 
+Overview
+--------
+
+mercury-engine is a lightweight content editing system that makes it easy to add live in-place editing to your site's static pages.
+
+It is designed to fit a workflow where static pages are hand crafted using regular rails templates and asset pipeline. It does not impose any structure. 
+
+To make an area of a page editable, simply annotate the area with the `editable` helper.
+
+### Example
+
+```haml
+section#main
+  %h1 My Cyber Web Page
+```
+
+becomes
+
+```haml
+section#main
+  = editable(:title, :h1) do
+    My Cyber Web Page
+```
+
 Installation
 ------------
 Add `mercury_engine` to your Gemfile:
