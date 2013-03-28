@@ -11,14 +11,20 @@ module PagesHelper
   def editable(id, tag=:div, options={}, &block)
     content        = content_for(id)
     type           = options[:type] || find_type_for_tag(tag)
-    options[:id]   = id
+
+    if tag.is_a?(Hash)
+      options = tag if tag.is_a?(Hash)
+      tag = :div
+    end
+
+    options[:id] = id
 
     if params[:mercury_frame]
       options[:data] ||= {}
       options[:data][:mercury] = type
     end
 
-    if type == :simple 
+    if type == :simple
       if content
         content_tag(tag, content, options.except(:type))
       else
@@ -51,6 +57,16 @@ module PagesHelper
       :simple
     else
       :full
+    end
+  end
+
+  def template_path(path)
+    return 'index' if path.blank?
+
+    if template_exists?(path + '/index', %w(pages))
+      path + '/index'
+    else
+      path
     end
   end
 end
