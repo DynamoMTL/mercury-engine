@@ -5,9 +5,6 @@ class Page < ActiveRecord::Base
   serialize       :content, Hash
   has_permalink   :title, scope: :parent_id
 
-  validates :title, presence: true
-  validates :title, uniqueness: {scope: :parent_id}
-
   class << self
     def find_by_path(path)
       return unless page = root
@@ -15,10 +12,6 @@ class Page < ActiveRecord::Base
       page.walk(path) do |last, part|
         last.children.find_by_permalink(part) if last
       end
-    end
-
-    def find_by_path!(path)
-      find_by_path(path) or raise ActiveRecord::RecordNotFound
     end
 
     def find_or_create_by_path(path)
@@ -30,24 +23,12 @@ class Page < ActiveRecord::Base
     end
   end
 
-  def root?
-    !parent
-  end
-
   def path
     if parent
       Pathname.new(parent.path) + permalink
     else
       Pathname.new("/")
     end
-  end
-
-  def template_path
-    if children.present? || root?
-      path + 'index'
-    else
-      path
-    end.to_s
   end
 
   def walk(path, &block)
