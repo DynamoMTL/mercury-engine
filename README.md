@@ -9,24 +9,49 @@ Overview
 
 mercury-engine is a lightweight content editing system that makes it easy to add live in-place editing to your site's static pages.
 
-It is designed to fit a workflow where static pages are hand crafted using regular rails templates and asset pipeline. It does not impose any structure. 
+It is designed to fit a workflow where static pages are hand crafted using regular rails templates and asset pipeline. It does not impose any structure on the host application and has minimal requirements. 
 
-To make an area of a page editable, simply annotate the area with the `editable` helper.
+### Examples
 
-### Example
+To make an area of a page editable, simply annotate the area with the `editable` helper.  
+
+if you have a HAML template like this:
 
 ```haml
-section#main
+-# in app/views/pages/index.html.haml
+%section#main
   %h1 My Cyber Web Page
+  %div All your web belong to us
 ```
 
-becomes
+it becomes:
 
 ```haml
-section#main
+%section#main
   = editable(:title, :h1) do
-    My Cyber Web Page
+    My Editable Cyber Web Page
+
+  = editable(:details) do
+    All your web belong to us
 ```
+
+The first parameter `:title` and `:subtitle` are the section names. The second parameter is the tag name, it is optional assumed to be `div`  
+The markup inside the block is the default content for the section. If there is newer content in the database, the newer content is displayed
+
+You can also pass additional parameters
+
+```haml
+= editable(:nav, class: 'retro')
+```
+
+The helper also supports Mercury's content types.
+
+```haml
+= editable(:title,   :h1,  type: :simple) # only allow text in h1
+= editable(:details, :div, type: :full)   # allow any markup inside div
+```
+
+Most of the time you dont need to explicitly pass the `:type` because the helper can determine for the type. e.g. it always uses `:simple` for h1,h2,h3..etc tags
 
 Installation
 ------------
