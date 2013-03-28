@@ -21,7 +21,8 @@ if you have a HAML template like this:
 -# in app/views/pages/index.html.haml
 %section#main
   %h1 My Cyber Web Page
-  %div All your web belong to us
+  :markdown
+    All your web belong to us
 ```
 
 it becomes:
@@ -32,10 +33,12 @@ it becomes:
     My Editable Cyber Web Page
 
   = editable(:details) do
-    All your web belong to us
+    :markdown
+      All your web belong to us
 ```
 
-The first parameter `:title` and `:subtitle` are the section names. The second parameter is the tag name, it is optional assumed to be `div`  
+The first parameter `:title` and `:details` are the section names. The second parameter is the optional tag name, assumed to be a `div`  
+
 The markup inside the block is the default content for the section. If there is newer content in the database, the newer content is displayed
 
 You can also pass additional parameters
@@ -51,7 +54,7 @@ The helper also supports Mercury's content types.
 = editable(:details, :div, type: :full)   # allow any markup inside div
 ```
 
-Most of the time you dont need to explicitly pass the `:type` because the helper can determine for the type. e.g. it always uses `:simple` for h1,h2,h3..etc tags
+Most of the time you dont need to explicitly pass the `:type` because the helper can determine it for common tags
 
 Installation
 ------------
