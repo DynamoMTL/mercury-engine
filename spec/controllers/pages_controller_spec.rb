@@ -17,7 +17,7 @@ describe PagesController do
       end
 
       specify { response.should be_success }
-      specify { response.should render_template("test") }
+      specify { response.should render_template("index") }
       specify { assigns(:page).should == page }
     end
 

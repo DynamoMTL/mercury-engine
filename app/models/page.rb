@@ -28,7 +28,7 @@ class Page < ActiveRecord::Base
       Pathname.new(parent.path) + permalink
     else
       Pathname.new("/")
-    end
+    end.to_s
   end
 
   def walk(path, &block)
