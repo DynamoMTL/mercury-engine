@@ -19,10 +19,7 @@ module PagesHelper
 
     options[:id] = id
 
-    if params[:mercury_frame]
-      options[:data] ||= {}
-      options[:data][:mercury] = type
-    end
+    set_mercury_options(options, type)
 
     if type == :simple
       if content
@@ -39,17 +36,26 @@ module PagesHelper
 
   def editable_image(id, default=nil)
     source  = content_for(id) || default
-    options = {id: id, data: {mercury: :image}}
+    options = {id: id}
+
+    set_mercury_options(options, :image)
 
     image_tag(source, options)
   end
 
   def title
-    editable(:h1, :title, @page.content[:title])
+    editable(:title, :h1) { @page.content[:title] }
   end
 
   def content_for(id)
     @page.content[id.to_s] if @page
+  end
+
+  def set_mercury_options(options, type)
+    if params[:mercury_frame]
+      options[:data] ||= {}
+      options[:data][:mercury] = type
+    end
   end
 
   def find_type_for_tag(tag)
