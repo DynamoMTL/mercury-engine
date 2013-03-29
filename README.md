@@ -2,7 +2,7 @@
 
 > The Little Engine That Could
 
-A basic content editing system based on [Mercury Editor](http://jejacks0n.github.com/mercury/) and [Active Admin](http://activeadmin.info/).
+A basic content editing system based on [Mercury Editor](http://jejacks0n.github.com/mercury/)
 
 Overview
 --------

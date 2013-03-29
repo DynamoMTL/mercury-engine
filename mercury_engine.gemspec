@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 3.2.13"
   s.add_dependency "mercury-rails"
+  s.add_dependency "devise"
   s.add_dependency "acts_as_tree"
   s.add_dependency "paper_trail"
   s.add_dependency "haml-rails"
