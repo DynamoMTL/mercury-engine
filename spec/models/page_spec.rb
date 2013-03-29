@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Page do
   context "with hierarchy" do
-    let!(:root)    { create_page(title: 'Home') }
-    let!(:about)   { create_page(title: 'About', parent: root) }
-    let!(:company) { create_page(title: 'Company', parent: about) }
-    let(:services) { create_page(title: 'Services', parent: company) }
+    let!(:root)    { create_page(permalink: 'home') }
+    let!(:about)   { create_page(permalink: 'about', parent: root) }
+    let!(:company) { create_page(permalink: 'company', parent: about) }
+    let(:services) { create_page(permalink: 'services', parent: company) }
 
     context 'path' do
       specify { root.path.should == '/'}
@@ -33,7 +33,7 @@ describe Page do
 
   context "#update_content" do
     context "root found" do
-      let!(:root) { create_page(title: 'Home') }
+      let!(:root) { create_page(permalink: 'home') }
 
       specify('url empty')    { Page.update_content("").should == root }
       specify('url is slash') { Page.update_content("/").should == root }
@@ -47,8 +47,8 @@ describe Page do
     end
 
     context "child page found" do
-      let!(:root)  { create_page(title: 'Home') }
-      let!(:about) { create_page(title: 'About', parent: root) }
+      let!(:root)  { create_page(permalink: 'home') }
+      let!(:about) { create_page(permalink: 'about', parent: root) }
 
       specify               { Page.update_content("about").should == about }
       specify("with slash") { Page.update_content("/about").should == about }
@@ -56,7 +56,7 @@ describe Page do
 
     context "child page not found" do
       context "root found" do
-        let!(:root) { create_page(title: 'Home') }
+        let!(:root) { create_page(permalink: 'home') }
 
         specify               { Page.update_content("about").parent.should == root }
         specify               { Page.update_content("about").path.should   == '/about' }
@@ -70,9 +70,9 @@ describe Page do
     end
 
     context "grandchild page found" do
-      let!(:root)           { create_page(title: 'Home') }
-      let!(:about)          { create_page(title: 'About', parent: root) }
-      let!(:company)        { create_page(title: 'Company', parent: about) }
+      let!(:root)           { create_page(permalink: 'home') }
+      let!(:about)          { create_page(permalink: 'about', parent: root) }
+      let!(:company)        { create_page(permalink: 'company', parent: about) }
 
       specify               { Page.update_content("about/company").parent.should == about }
       specify               { Page.update_content("about/company").should        == company }

@@ -2,10 +2,9 @@
 class CreatePages < ActiveRecord::Migration
   def change
     create_table :pages do |t|
-      t.string :title, :permalink
+      t.string  :permalink
       t.integer :parent_id
-      t.text :content
-      t.text :meta_description, :meta_keywords
+      t.text    :content
 
       t.timestamps
     end

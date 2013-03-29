@@ -1,9 +1,8 @@
 class Page < ActiveRecord::Base
   acts_as_tree
   has_paper_trail
-  attr_accessible :title, :content, :parent_id, :parent, :permalink
+  attr_accessible :content, :parent, :parent_id, :permalink
   serialize       :content, Hash
-  has_permalink   :title, scope: :parent_id
 
   class << self
     def find_by_path(path)
