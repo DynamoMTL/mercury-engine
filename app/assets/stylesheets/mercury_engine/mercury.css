@@ -22,3 +22,6 @@
  *= require mercury/mercury
  */
 
+.mercury-iframe  {
+  height: 100%;
+}
