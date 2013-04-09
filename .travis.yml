@@ -1,6 +1,7 @@
 language: ruby
 before_script:
   - "ruby --version"
+  - "cd spec/dummy && rake db:migrate"
 script: "bundle exec rake spec"
 rvm:
   1.9.3
