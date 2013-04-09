@@ -2,7 +2,7 @@
 
 A basic content editing system based on [Mercury Editor](http://jejacks0n.github.com/mercury/).
 
-!(https://travis-ci.org/DynamoMTL/mercury-engine.png)
+![Travis CI Status](https://travis-ci.org/DynamoMTL/mercury-engine.png)
 
 Overview
 --------
