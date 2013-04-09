@@ -1,6 +1,9 @@
+language: ruby
 before_script:
   - "ruby --version"
-script: "DISPLAY=:99.0 bundle exec rake"
+script: "bundle exec rake spec"
+rvm:
+  1.9.3
 notifications:
   email: false
 branches:
