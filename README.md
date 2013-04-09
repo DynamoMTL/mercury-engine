@@ -1,8 +1,8 @@
 # Mercury Engine
 
-> The Little Engine That Could
-
 A basic content editing system based on [Mercury Editor](http://jejacks0n.github.com/mercury/).
+
+!(https://travis-ci.org/DynamoMTL/mercury-engine.png)
 
 Overview
 --------
