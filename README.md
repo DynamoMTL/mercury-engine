@@ -17,10 +17,7 @@ It does not impose any structure on the host application and has minimal require
 
 ### How it works
 
-To make an area of a page editable, simply annotate the area with the `editable` helper.  
-
-If you have a HAML template like this:
-
+Say you have a HAML template like this:
 ```haml
 -# in app/views/pages/index.html.haml
 %section#main
@@ -42,9 +39,10 @@ To make it editable, simply annotate it with the helper:
 ```
 
 The first parameter (`:title` and `:details`) is the id, it should be unique per page. 
-The second parameter is the optional tag name, defaults to `:div`.
+The second parameter is the optional tag name, defaults to `:div`
 
-If the user has edited the section, content is served from the database. When there are not edits, the content inside the block is used.
+If the user has edited the section, content is served from the database. 
+When there are no edits, the content defined inside the block is used.
 
 Optional html attributes can also be passed:
 
