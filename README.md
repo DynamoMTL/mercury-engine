@@ -6,15 +6,16 @@ A basic content editing system based on [Mercury Editor](http://jejacks0n.github
 
 [![Code Climate](https://codeclimate.com/github/DynamoMTL/mercury-engine.png)](https://codeclimate.com/github/DynamoMTL/mercury-engine)
 
-Overview
+Whats that?
 --------
 
 mercury-engine is a lightweight content editing system that makes it easy to add live in-place editing to your site's static pages.
 
-It is designed to fit a workflow where static pages are hand crafted using regular Rails templates and asset pipeline. 
+It is designed to fit a workflow where static pages are hand crafted using regular Rails templates/asset pipeline. 
+
 It does not impose any structure on the host application and has minimal requirements. 
 
-### Examples
+### How it works
 
 To make an area of a page editable, simply annotate the area with the `editable` helper.  
 
@@ -28,7 +29,7 @@ If you have a HAML template like this:
     All your web belong to us
 ```
 
-It becomes:
+To make it editable, simply annotate it with the helper:
 
 ```haml
 %section#main
@@ -40,26 +41,26 @@ It becomes:
       All your web belong to us
 ```
 
-The first parameter `:title` and `:details` are the section names. 
-The second parameter is the optional tag name, assumed to be a `div`.
+The first parameter (`:title` and `:details`) is the id, it should be unique per page. 
+The second parameter is the optional tag name, defaults to `:div`.
 
-The markup inside the block is the default content for the section. 
-If there is newer content in the database, the newer content is displayed.
+If the user has edited the section, content is served from the database. When there are not edits, the content inside the block is used.
 
-You can also pass additional parameters:
+Optional html attributes can also be passed:
 
 ```haml
 = editable(:nav, class: 'retro')
 ```
 
-The helper also supports Mercury's content types:
+The helper also supports Mercury's other content types:
 
 ```haml
 = editable(:title,   :h1,  type: :simple) # only allow text in h1
 = editable(:details, :div, type: :full)   # allow any markup inside div
 ```
 
-Most of the time you dont need to explicitly pass the `:type` because the helper can determine it for common tags.
+Most of the time you wont need to explicitly declare the `:type` because the helper can determine `:type` for common tags.
+The following tags are considered simple: h1, h2, h3, h4, h5, h6, a, span, label
 
 Installation
 ------------
@@ -94,6 +95,8 @@ The engine provides a partial that will only show the link when an admin is logg
 ```haml
 = render partial: 'mercury_engine/shared/edit_link'
 ```
+# And - you're done.
+coffee break? 
 
 Testing
 -------
