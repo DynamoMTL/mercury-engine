@@ -33,14 +33,15 @@ module PagesHelper
       end
     end
   end
-
-  def editable_image(id, default=nil)
+  
+  def editable_image(id, default=nil, options = {})
+    options.symbolize_keys!
     source  = content_for(id) || default
-    options = {id: id}
+    opts = {id: id}
+    opts.merge! options
 
-    set_mercury_options(options, :image)
-
-    image_tag(source, options)
+    set_mercury_options(opts, :image)
+    image_tag(source, opts)
   end
 
   def title
