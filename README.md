@@ -2,7 +2,9 @@
 
 A basic content editing system based on [Mercury Editor](http://jejacks0n.github.com/mercury/).
 
-![Travis CI Status](https://travis-ci.org/DynamoMTL/mercury-engine.png)
+[![Travis CI Status](https://travis-ci.org/DynamoMTL/mercury-engine.png)](https://travis-ci.org/DynamoMTL/mercury-engine)
+
+[![Code Climate](https://codeclimate.com/github/DynamoMTL/mercury-engine.png)](https://codeclimate.com/github/DynamoMTL/mercury-engine)
 
 Overview
 --------
