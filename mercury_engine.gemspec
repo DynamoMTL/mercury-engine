@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.author      = "Josh Nussbaum"
   s.email       = "joshnuss@gmail.com"
   s.homepage    = "http://www.github.com/DynamoMTL/mercury-engine"
-  s.summary     = "Simple content management in an engine"
-  s.description = "A mercury based mercury_engine"
+  s.summary     = "Content management in an engine using Mercury Editor"
+  s.description = "Adds models and helpers that make it easy to integrate Mercury Editor into any rails app"
   s.required_ruby_version = ">= 1.9.3"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
