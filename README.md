@@ -22,33 +22,36 @@ Say you have a HAML template like this:
 -# in app/views/pages/index.html.haml
 %section#main
   %h1 My Cyber Web Page
-  :markdown
-    All your web belong to us
+  #details.highlight
+    :markdown
+      All your web belong to us  
 ```
 
 To make it editable, simply annotate it with the helper:
-
 ```haml
 %section#main
   = editable(:title, :h1) do
     My Editable Cyber Web Page
 
-  = editable(:details) do
+  = editable(:details, class: 'highlight') do
     :markdown
       All your web belong to us
 ```
 
-The first parameter (`:title` and `:details`) is the id, it should be unique per page. 
-The second parameter is the optional tag name, defaults to `:div`
+## `editable` helper
 
-If the user has edited the section, content is served from the database. 
-When there are no edits, the content defined inside the block is used.
+`#editable(id, tag_or_options, options)`
 
-Optional html attributes can also be passed:
+- The `id` is required and should be unique per page 
+- The tag is optional and defaults to `:div`
+- The last parameter is an optional hash of html attributes
 
-```haml
-= editable(:nav, class: 'retro')
-```
+## How we decide which content to use
+
+If the user has edited a given section, content will be served from the database. 
+When there are no edits, then the content defined in the template will used.
+
+## Content Types
 
 The helper also supports Mercury's other content types:
 
