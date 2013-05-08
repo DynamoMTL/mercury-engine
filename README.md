@@ -90,6 +90,12 @@ It will copy over database migrations and will mount the engine in your `config/
 rails generate mercury_engine:install
 ```
 
+Optionally install support for image uploads
+
+```
+rails generate mercury:install:images
+```
+
 Also, add the "Edit" link somewhere in your layout. 
 The engine provides a partial that will only show the link when an admin is logged in.
 
