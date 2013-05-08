@@ -6,6 +6,7 @@ class PagesController < ApplicationController
   def show
     path  = params[:path]
     @page = Page.find_by_path(path)
+    append_view_path 'app/views/pages'
 
     render action: template_path(path)
   end
