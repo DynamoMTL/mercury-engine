@@ -1,5 +1,4 @@
 require 'mercury-rails'
-require 'mercury/authentication'
 require 'acts_as_tree'
 require 'paper_trail'
 require 'haml'
